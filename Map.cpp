@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Sat Apr 28 22:50:53 2012 WILMOT Pierre
+// Last update Sat Apr 28 23:31:05 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -155,8 +155,10 @@ unsigned int			Map::log(int i)
 void				Map::mute()
 {
   int	k(20);
+  if ((int)m_snakes.size() == 5)
+    k = 2;
 
-  while (m_snakes.size() != 20)
+  while ((int)m_snakes.size() != k)
     {
       m_snakes.pop_back();
     }

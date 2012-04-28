@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Sat Apr 28 22:51:57 2012 WILMOT Pierre
+// Last update Sat Apr 28 23:28:03 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -23,7 +23,7 @@ int	main(int ac, char **av)
   if (ac >= 2)
     c = atoi(av[1]);
   else
-    c = 120;
+    c = 250;
 
   Map	m(c);
 
