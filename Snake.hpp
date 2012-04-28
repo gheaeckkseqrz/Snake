@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:59:37 2012 WILMOT Pierre
-// Last update Sat Apr 28 15:00:40 2012 WILMOT Pierre
+// Last update Sat Apr 28 21:49:57 2012 WILMOT Pierre
 //
 
 #ifndef __SNAKE_HPP__
@@ -33,6 +33,7 @@ public:
   void				display(std::ostream &s) const;
   void				move(Map &m);
   bool				canMove(Map const &m) const;
+  void				rePlace(Map const &m);
 
   Cdn<int>			operator[](unsigned int i);
 

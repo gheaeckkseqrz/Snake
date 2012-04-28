@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Sat Apr 28 15:59:46 2012 WILMOT Pierre
+// Last update Sat Apr 28 21:49:39 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -157,6 +157,7 @@ void				Map::mute()
     }
   for (int j(0) ; j <= k ; ++j)
     {
+      m_snakes[j].rePlace(*this);
       for (int l(j+1) ; l <= k ; ++l)
         {
 	  m_snakes.push_back(Snake(*this, m_snakes[j], m_snakes[l]));
