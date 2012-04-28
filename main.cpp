@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Sat Apr 28 22:04:36 2012 WILMOT Pierre
+// Last update Sat Apr 28 22:51:57 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -18,6 +18,7 @@ int	main(int ac, char **av)
   (void)av;
 
   int	c;
+  int	best(0);
 
   if (ac >= 2)
     c = atoi(av[1]);
@@ -34,12 +35,12 @@ int	main(int ac, char **av)
       j = 0;
       while (m.hasLivingSnakes() && m.userContinue() && j < 5000)
 	{
-	  std::cout << "============== Tour " << j << " ================" << std::endl;
+	  std::cout << "============== Tour " << i << "/" << j << " (" << best << ")================" << std::endl;
 	  m.play();
 	  j++;
 	}
       m.order();
-      m.log(i);
+      best = m.log(i);
       m.mute();
       i++;
     }

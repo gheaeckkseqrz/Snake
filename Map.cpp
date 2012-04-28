@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Sat Apr 28 21:58:23 2012 WILMOT Pierre
+// Last update Sat Apr 28 22:50:53 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -133,18 +133,23 @@ bool				Map::userContinue() const
   return (m_continue);
 }
 
-void				Map::log(int i)
+unsigned int			Map::log(int i)
 {
+  unsigned int			best(0);
   std::stringstream	ss;
   ss << "./Logs/" << i << ".txt";
   std::ofstream	logfile(ss.str().c_str());
 
   logfile << "Vague " << i << std::endl << std::endl;
 
+  best = m_snakes[0].size();
   for (unsigned int i(0) ; i < m_snakes.size() ; ++i)
     {
+      if (m_snakes[0].size() > best)
+	best = m_snakes[0].size();
       logfile << m_snakes[i].size() << "  " << m_snakes[i] << std::endl;
     }
+  return (best);
 }
 
 void				Map::mute()
