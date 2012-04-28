@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:49:18 2012 WILMOT Pierre
-// Last update Sat Apr 28 17:35:29 2012 WILMOT Pierre
+// Last update Sat Apr 28 21:58:09 2012 WILMOT Pierre
 //
 
 #ifndef __MAP_HPP__
@@ -49,6 +49,7 @@ public:
   void				log(int i);
   void				mute();
   void				refill();
+  void				setTitle(int i);
 
 private:
   bool				FoodUp(Cdn<int> &a) const;

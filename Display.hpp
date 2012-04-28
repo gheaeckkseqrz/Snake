@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 00:48:22 2012 WILMOT Pierre
-// Last update Fri Apr 27 08:40:20 2012 WILMOT Pierre
+// Last update Sat Apr 28 22:04:17 2012 WILMOT Pierre
 //
 
 #ifndef __DISPLAY_HPP__
@@ -25,6 +25,7 @@ public:
   ~Display() {};
 
   void		drawBloc(Cdn<int> const&c, sf::Color const &a);
+  void		setTittle(int i);
 
 protected:
   sf::RenderWindow      *m_win;

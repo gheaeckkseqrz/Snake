@@ -5,9 +5,10 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 00:48:27 2012 WILMOT Pierre
-// Last update Sat Apr 28 17:35:27 2012 WILMOT Pierre
+// Last update Sat Apr 28 22:15:27 2012 WILMOT Pierre
 //
 
+#include	<sstream>
 #include	<iostream>
 #include	"Display.hpp"
 
@@ -25,4 +26,14 @@ void		Display::drawBloc(Cdn<int> const&c, sf::Color const &a)
   bloc.setOutlineThickness(1);
   bloc.setPosition(c.getX()*3, c.getY()*3);
   m_win->draw(bloc);
+}
+
+void		Display::setTittle(int i)
+{
+  std::stringstream     ss;
+  ss << "Snake " << i;
+
+  std::cout << "Setting title to : " << ss.str() << std::endl;
+
+  m_win->setTitle(ss.str());
 }

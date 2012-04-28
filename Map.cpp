@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Sat Apr 28 21:49:39 2012 WILMOT Pierre
+// Last update Sat Apr 28 21:58:23 2012 WILMOT Pierre
 //
 
 #include	<algorithm>

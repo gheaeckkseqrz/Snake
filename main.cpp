@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Sat Apr 28 15:53:41 2012 WILMOT Pierre
+// Last update Sat Apr 28 22:04:36 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -30,6 +30,7 @@ int	main(int ac, char **av)
   int	j(0);
   while (1)
     {
+      m.setTittle(i);
       j = 0;
       while (m.hasLivingSnakes() && m.userContinue() && j < 5000)
 	{
