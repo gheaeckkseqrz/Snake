@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:49:18 2012 WILMOT Pierre
-// Last update Sat Apr 28 22:51:13 2012 WILMOT Pierre
+// Last update Sun Apr 29 12:04:14 2012 WILMOT Pierre
 //
 
 #ifndef __MAP_HPP__
@@ -62,6 +62,7 @@ private:
   bool				FoodDownLeft(Cdn<int> &a) const;
 
   bool				FoodIn(int x1, int x2, int y1, int y2) const;
+  bool				Caseis(Cdn<int> &a, int i, e_caseType ct) const;
 
 private:
   std::vector<Cdn<int> >	m_food;

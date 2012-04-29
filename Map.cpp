@@ -5,13 +5,14 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Sat Apr 28 23:31:05 2012 WILMOT Pierre
+// Last update Sun Apr 29 19:10:17 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
 #include	<iostream>
 #include	<fstream>
 #include	<sstream>
+#include	<cmath>
 
 #include	"Map.hpp"
 
@@ -154,7 +155,8 @@ unsigned int			Map::log(int i)
 
 void				Map::mute()
 {
-  int	k(20);
+  int	k(40); // Keep
+  int	m(20); // Mute
   if ((int)m_snakes.size() == 5)
     k = 2;
 
@@ -162,10 +164,10 @@ void				Map::mute()
     {
       m_snakes.pop_back();
     }
-  for (int j(0) ; j <= k ; ++j)
+  for (int j(0) ; j <= m ; ++j)
     {
       m_snakes[j].rePlace(*this);
-      for (int l(j+1) ; l <= k ; ++l)
+      for (int l(j+1) ; l <= m ; ++l)
         {
 	  m_snakes.push_back(Snake(*this, m_snakes[j], m_snakes[l]));
         }
@@ -198,6 +200,20 @@ unsigned int			Map::return_env(Cdn<int> &a) const
     result |= 64;
   if (FoodDownLeft(a))
     result |= 128;
+
+  // e_caseType	ct(EMPTY);
+
+
+  // for (int i(0) ; i < 24 ; i++)
+  //   {
+  //     if (i == 8)
+  // 	ct = WALL;
+  //     if (i == 16)
+  // 	ct = FOOD;
+  //     if (Caseis(a, i, ct))
+  // 	result |= (unsigned int)pow(256, i+1);
+  //   }
+
 
   return (result);
 }
@@ -259,4 +275,24 @@ void				Map::refill()
     {
       m_snakes.push_back(Snake(*this));
     }
+}
+
+bool				Map::Caseis(Cdn<int> &a, int i, e_caseType ct) const
+{
+  static int			init(false);
+  static std::vector<Cdn<int> >	c;
+
+  if (!init)
+    {
+      c.push_back(Cdn<int>(0, -1));
+      c.push_back(Cdn<int>(1, -1));
+      c.push_back(Cdn<int>(1, 0));
+      c.push_back(Cdn<int>(1, 1));
+      c.push_back(Cdn<int>(0, 1));
+      c.push_back(Cdn<int>(-1, 1));
+      c.push_back(Cdn<int>(-1, 0));
+      c.push_back(Cdn<int>(-1, -1));
+      init = true;
+    }
+  return (getCase(a.getX() + c[i].getX(), a.getY() + c[i].getY()) == ct);
 }

@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Sat Apr 28 23:28:03 2012 WILMOT Pierre
+// Last update Sun Apr 29 18:50:58 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -19,6 +19,7 @@ int	main(int ac, char **av)
 
   int	c;
   int	best(0);
+  int	best2(0);
 
   if (ac >= 2)
     c = atoi(av[1]);
@@ -40,7 +41,9 @@ int	main(int ac, char **av)
 	  j++;
 	}
       m.order();
-      best = m.log(i);
+      best2 = m.log(i);
+      if (best2 > best)
+	best = best2;
       m.mute();
       i++;
     }

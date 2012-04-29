@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 13:17:08 2012 WILMOT Pierre
-// Last update Sat Apr 28 16:12:47 2012 WILMOT Pierre
+// Last update Sun Apr 29 19:10:47 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -13,11 +13,16 @@
 #include	"SnakeIA.hpp"
 #include	"Map.hpp"
 
+//#define		GENE_SIZE (4294967295 / 4)
+#define		GENE_SIZE (256)
+
+// 1 073 741 823 = 1Go 73 Mo 741 Ko 823o
+
 SnakeIA::SnakeIA()
 {
   char	d[] = "UDRL";
 
-  while (m_gene.size() != 256)
+  while (m_gene.size() != GENE_SIZE)
     {
       m_gene.push_back(d[rand() % 4]);
     }
@@ -49,7 +54,7 @@ std::string			SnakeIA::getGene() const
 
 SnakeIA::e_Direction		SnakeIA::getMove(Map const &m, Cdn<int> &head) const
 {
-  int		env(m.return_env(head));
+  unsigned int		env(m.return_env(head));
 
   if (m_gene[env] == 'U')
     return (UP);
