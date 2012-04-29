@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:59:37 2012 WILMOT Pierre
-// Last update Sun Apr 29 19:30:29 2012 WILMOT Pierre
+// Last update Sun Apr 29 21:19:28 2012 WILMOT Pierre
 //
 
 #ifndef __SNAKE_HPP__
@@ -29,6 +29,7 @@ public:
   bool				getAlive() const;
   void				setAlive(bool a);
 
+  void				placeHead(Map const &m);
   bool				containCdn(Cdn<int> const &c) const;
   unsigned int			size() const;
   void				display(std::ostream &s) const;
