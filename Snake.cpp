@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 21:05:14 2012 WILMOT Pierre
-// Last update Sat Apr 28 21:50:20 2012 WILMOT Pierre
+// Last update Sun Apr 29 19:34:12 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -63,6 +63,30 @@ Snake::Snake(Map const &m, Snake const &a, Snake const &b)
 	m_snake.clear();
     }
   std::cout << "Creating Snake" << *this << std::endl;
+}
+
+Snake::Snake(Map const &m, std::string const &g)
+  :SnakeIA(g), toGrow(0), m_alive(true)
+{
+  int	x;
+  int	y;
+
+  while (m_snake.size() != START_SIZE)
+    {
+      if (m_snake.empty())
+	{
+	  do
+	    {
+	      x = rand() % MAP_X;
+	      y = rand() % MAP_Y;
+	      std::cout << "Placing head on " << x << "/" << y << " : " << m.getCase(x, y) << std::endl;
+	    }
+	  while (m.getCase(x, y) != Map::EMPTY);
+	  m_snake.push_back(Cdn<int>(x, y));
+	}
+      if (!appendSnake(START_SIZE - 1, m))
+	m_snake.clear();
+    }
 }
 
 Snake::~Snake()

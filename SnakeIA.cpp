@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 13:17:08 2012 WILMOT Pierre
-// Last update Sun Apr 29 19:10:47 2012 WILMOT Pierre
+// Last update Sun Apr 29 19:23:59 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -41,6 +41,11 @@ SnakeIA::SnakeIA(Snake const &a, Snake const &b)
       else
 	m_gene.push_back(d[m_gene.size()]);
     }
+}
+
+SnakeIA::SnakeIA(std::string const &g)
+  : m_gene(g)
+{
 }
 
 SnakeIA::~SnakeIA()

@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Sun Apr 29 19:10:17 2012 WILMOT Pierre
+// Last update Sun Apr 29 19:33:24 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -158,7 +158,10 @@ void				Map::mute()
   int	k(40); // Keep
   int	m(20); // Mute
   if ((int)m_snakes.size() == 5)
-    k = 2;
+    {
+      k = 4;
+      m = 2;
+    }
 
   while ((int)m_snakes.size() != k)
     {
@@ -295,4 +298,9 @@ bool				Map::Caseis(Cdn<int> &a, int i, e_caseType ct) const
       init = true;
     }
   return (getCase(a.getX() + c[i].getX(), a.getY() + c[i].getY()) == ct);
+}
+
+void				Map::pushSnake(std::string g)
+{
+  m_snakes.push_back(Snake(*this, g));
 }

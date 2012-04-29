@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 13:05:16 2012 WILMOT Pierre
-// Last update Sat Apr 28 15:02:58 2012 WILMOT Pierre
+// Last update Sun Apr 29 19:22:38 2012 WILMOT Pierre
 //
 
 #ifndef __SNAKEIA_HPP__
@@ -34,6 +34,7 @@ public:
 public:
   SnakeIA();
   SnakeIA(Snake const &a, Snake const &b);
+  SnakeIA(std::string const &g);
   ~SnakeIA();
 
   e_Direction			getMove(Map const &m, Cdn<int> &head) const;
