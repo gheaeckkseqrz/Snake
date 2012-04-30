@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 13:17:08 2012 WILMOT Pierre
-// Last update Sun Apr 29 19:23:59 2012 WILMOT Pierre
+// Last update Mon Apr 30 22:00:10 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -13,61 +13,84 @@
 #include	"SnakeIA.hpp"
 #include	"Map.hpp"
 
-//#define		GENE_SIZE (4294967295 / 4)
 #define		GENE_SIZE (256)
-
-// 1 073 741 823 = 1Go 73 Mo 741 Ko 823o
 
 SnakeIA::SnakeIA()
 {
   char	d[] = "UDRL";
 
-  while (m_gene.size() != GENE_SIZE)
+  for (int i(0); i < 5 ; ++i)
     {
-      m_gene.push_back(d[rand() % 4]);
+      while (m_gene[i].size() != GENE_SIZE)
+	{
+	  m_gene[i].push_back(d[rand() % 4]);
+	}
     }
 }
 
 SnakeIA::SnakeIA(Snake const &a, Snake const &b)
 {
-  std::string	c(a.getGene());
-  std::string	d(b.getGene());
+  std::string	c;
+  std::string	d;
 
-
-  while (m_gene.size() != 256)
+  for (int i(0); i < 5 ; ++i)
     {
-      if ((m_gene.size()) % 2)
-	m_gene.push_back(c[m_gene.size()]);
-      else
-	m_gene.push_back(d[m_gene.size()]);
+      c = a.getGene(i);
+      d = b.getGene(i);
+      while (m_gene[i].size() != 256)
+	{
+	  if (rand() % 2)
+	    {
+	      if ((m_gene[i].size()) % 2)
+		m_gene[i].push_back(c[m_gene[i].size()]);
+	      else
+		m_gene[i].push_back(d[m_gene[i].size()]);
+	    }
+	}
     }
-}
-
-SnakeIA::SnakeIA(std::string const &g)
-  : m_gene(g)
-{
 }
 
 SnakeIA::~SnakeIA()
 {
 }
 
-std::string			SnakeIA::getGene() const
+std::string			SnakeIA::getGene(int i) const
 {
-  return (m_gene);
+  return (m_gene[i]);
 }
 
 SnakeIA::e_Direction		SnakeIA::getMove(Map const &m, Cdn<int> &head) const
 {
-  unsigned int		env(m.return_env(head));
+  unsigned int		result(0);
 
-  if (m_gene[env] == 'U')
+  unsigned int		env[4];
+
+  env[0] = (m.return_env1(head));
+  env[1] = (m.return_env2(head));
+  env[2] = (m.return_env3(head));
+  env[3] = (m.return_env4(head));
+
+  int	b(1);
+  for (int i(0) ; i < 4 ; ++i)
+    {
+      if (m_gene[i][env[i]] == 'U')
+	result += 0 * b;
+      if (m_gene[i][env[i]] == 'D')
+	result += 1 * b;
+      if (m_gene[i][env[i]] == 'R')
+	result += 2 * b;
+      if (m_gene[i][env[i]] == 'L')
+	result += 3 * b;
+      b *= 4;
+    }
+
+  if (m_gene[4][result] == 'U')
     return (UP);
-  if (m_gene[env] == 'D')
+  if (m_gene[4][result] == 'D')
     return (DOWN);
-  if (m_gene[env] == 'R')
+  if (m_gene[4][result] == 'R')
     return (RIGHT);
-  if (m_gene[env] == 'L')
+  if (m_gene[4][result] == 'L')
     return (LEFT);
   return (UP);
 }

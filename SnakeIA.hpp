@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 13:05:16 2012 WILMOT Pierre
-// Last update Sun Apr 29 19:22:38 2012 WILMOT Pierre
+// Last update Mon Apr 30 21:01:09 2012 WILMOT Pierre
 //
 
 #ifndef __SNAKEIA_HPP__
@@ -39,10 +39,10 @@ public:
 
   e_Direction			getMove(Map const &m, Cdn<int> &head) const;
   e_Direction			getRandomMove() const;
-  std::string			getGene() const;
+  std::string			getGene(int i) const;
 
 protected:
-  std::string			m_gene;
+  std::string			m_gene[5];
   int				m_score;
   int				m_eated;
 };

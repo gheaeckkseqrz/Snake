@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Sun Apr 29 19:33:24 2012 WILMOT Pierre
+// Last update Mon Apr 30 21:50:37 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -46,8 +46,12 @@ Map::e_caseType		Map::getCase(int x, int y) const
 
 void			Map::display()
 {
-  sf::Color	c[5] = {sf::Color::Red, sf::Color::Blue, sf::Color::Green,
-			sf::Color::Yellow, sf::Color::Cyan};
+  sf::Color	c[6] = {sf::Color::Red,
+			sf::Color::Blue,
+			sf::Color::Green,
+			sf::Color::Yellow,
+			sf::Color::Magenta,
+			sf::Color::Cyan };
 
   m_win->clear();
 
@@ -70,7 +74,7 @@ void			Map::display()
       if (m_snakes[i].getAlive())
 	{
 	  for (unsigned int j(0) ; j < m_snakes[i].size() ; ++j)
-	    drawBloc(m_snakes[i][j], c[i % 4]);
+	    drawBloc(m_snakes[i][j], c[i % 5]);
 	}
     }
   m_win->display();
@@ -148,7 +152,11 @@ unsigned int			Map::log(int i)
     {
       if (m_snakes[0].size() > best)
 	best = m_snakes[0].size();
-      logfile << m_snakes[i].size() << "  " << m_snakes[i] << std::endl;
+      logfile << "Size : " << m_snakes[i].size() << std::endl;
+      for (int j(0) ; j < 5 ; ++j)
+	{
+	  logfile << m_snakes[i].getGene(j) << std::endl;
+	}
     }
   return (best);
 }
@@ -182,7 +190,9 @@ void				Map::mute()
   refill();
 }
 
-unsigned int			Map::return_env(Cdn<int> &a) const
+// ================ RETURN ENV FUNC
+
+unsigned int			Map::return_env1(Cdn<int> &a) const
 {
   unsigned int	result(0);
 
@@ -194,7 +204,6 @@ unsigned int			Map::return_env(Cdn<int> &a) const
     result |= 4;
   if (FoodRight(a))
     result |= 8;
-
   if (FoodUpRight(a))
     result |= 16;
   if (FoodUpLeft(a))
@@ -203,21 +212,75 @@ unsigned int			Map::return_env(Cdn<int> &a) const
     result |= 64;
   if (FoodDownLeft(a))
     result |= 128;
+  return (result);
+}
 
-  // e_caseType	ct(EMPTY);
+unsigned int			Map::return_env2(Cdn<int> &a) const
+{
+  unsigned int	result(0);
 
+  if (getCase(a.getX(), a.getY() - 1) == FOOD)
+    result |= 1;
+  if (getCase(a.getX() + 1, a.getY() - 1) == FOOD)
+    result |= 2;
+  if (getCase(a.getX() + 1, a.getY()) == FOOD)
+    result |= 4;
+  if (getCase(a.getX() + 1, a.getY() + 1) == FOOD)
+    result |= 8;
+  if (getCase(a.getX(), a.getY() + 1) == FOOD)
+    result |= 16;
+  if (getCase(a.getX() - 1, a.getY() + 1) == FOOD)
+    result |= 32;
+  if (getCase(a.getX() - 1, a.getY()) == FOOD)
+    result |= 64;
+  if (getCase(a.getX() - 1, a.getY() - 1) == FOOD)
+    result |= 128;
+  return (result);
+}
 
-  // for (int i(0) ; i < 24 ; i++)
-  //   {
-  //     if (i == 8)
-  // 	ct = WALL;
-  //     if (i == 16)
-  // 	ct = FOOD;
-  //     if (Caseis(a, i, ct))
-  // 	result |= (unsigned int)pow(256, i+1);
-  //   }
+unsigned int			Map::return_env3(Cdn<int> &a) const
+{
+  unsigned int	result(0);
 
+  if (getCase(a.getX(), a.getY() - 1) == WALL)
+    result |= 1;
+  if (getCase(a.getX() + 1, a.getY() - 1) == WALL)
+    result |= 2;
+  if (getCase(a.getX() + 1, a.getY()) == WALL)
+    result |= 4;
+  if (getCase(a.getX() + 1, a.getY() + 1) == WALL)
+    result |= 8;
+  if (getCase(a.getX(), a.getY() + 1) == WALL)
+    result |= 16;
+  if (getCase(a.getX() - 1, a.getY() + 1) == WALL)
+    result |= 32;
+  if (getCase(a.getX() - 1, a.getY()) == WALL)
+    result |= 64;
+  if (getCase(a.getX() - 1, a.getY() - 1) == WALL)
+    result |= 128;
+  return (result);
+}
 
+unsigned int			Map::return_env4(Cdn<int> &a) const
+{
+  unsigned int	result(0);
+
+  if (FoodIn(a.getX(), a.getY() - 4, a.getX(), a.getY()))
+    result |= 1;
+  if (FoodIn(a.getX(), a.getY(), a.getX(), a.getY() + 4))
+    result |= 2;
+  if (FoodIn(a.getX() - 4, a.getY(), a.getX(), a.getY()))
+    result |= 4;
+  if (FoodIn(a.getX(), a.getY(), a.getX() + 4, a.getY()))
+    result |= 8;
+  if (FoodIn(a.getX(), a.getY() - 4, a.getX() + 4, a.getY()))
+    result |= 16;
+  if (FoodIn(a.getX() - 4, a.getY() - 4, a.getX(), a.getY() - 4))
+    result |= 32;
+  if (FoodIn(a.getX() - 4, a.getY(), a.getX(), a.getY() + 4))
+    result |= 64;
+  if (FoodIn(a.getX(), a.getY(), a.getX() + 4, a.getY() + 4))
+    result |= 128;
   return (result);
 }
 
@@ -226,6 +289,37 @@ void				Map::order()
   std::sort(m_snakes.begin(), m_snakes.end());
   std::reverse(m_snakes.begin(), m_snakes.end());
 }
+
+
+void				Map::refill()
+{
+  while (m_snakes.size() < (unsigned int)m_size)
+    {
+      m_snakes.push_back(Snake(*this));
+    }
+}
+
+bool				Map::Caseis(Cdn<int> &a, int i, e_caseType ct) const
+{
+  static int			init(false);
+  static std::vector<Cdn<int> >	c;
+
+  if (!init)
+    {
+      c.push_back(Cdn<int>(0, -1));
+      c.push_back(Cdn<int>(1, -1));
+      c.push_back(Cdn<int>(1, 0));
+      c.push_back(Cdn<int>(1, 1));
+      c.push_back(Cdn<int>(0, 1));
+      c.push_back(Cdn<int>(-1, 1));
+      c.push_back(Cdn<int>(-1, 0));
+      c.push_back(Cdn<int>(-1, -1));
+      init = true;
+    }
+  return (getCase(a.getX() + c[i].getX(), a.getY() + c[i].getY()) == ct);
+}
+
+// ========================== PRIVATE FUNC
 
 bool				Map::FoodUp(Cdn<int> &a) const
 {
@@ -271,36 +365,7 @@ bool				Map::FoodIn(int x1, int x2, int y1, int y2) const
   return (false);
 }
 
-
-void				Map::refill()
-{
-  while (m_snakes.size() < (unsigned int)m_size)
-    {
-      m_snakes.push_back(Snake(*this));
-    }
-}
-
-bool				Map::Caseis(Cdn<int> &a, int i, e_caseType ct) const
-{
-  static int			init(false);
-  static std::vector<Cdn<int> >	c;
-
-  if (!init)
-    {
-      c.push_back(Cdn<int>(0, -1));
-      c.push_back(Cdn<int>(1, -1));
-      c.push_back(Cdn<int>(1, 0));
-      c.push_back(Cdn<int>(1, 1));
-      c.push_back(Cdn<int>(0, 1));
-      c.push_back(Cdn<int>(-1, 1));
-      c.push_back(Cdn<int>(-1, 0));
-      c.push_back(Cdn<int>(-1, -1));
-      init = true;
-    }
-  return (getCase(a.getX() + c[i].getX(), a.getY() + c[i].getY()) == ct);
-}
-
-void				Map::pushSnake(std::string g)
-{
-  m_snakes.push_back(Snake(*this, g));
-}
+// void				Map::pushSnake(std::string g)
+// {
+//   m_snakes.push_back(Snake(*this, g));
+// }

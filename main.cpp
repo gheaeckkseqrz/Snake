@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Sun Apr 29 19:30:27 2012 WILMOT Pierre
+// Last update Mon Apr 30 21:35:13 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -28,18 +28,15 @@ int	main(int ac, char **av)
 
   Map	m(c);
 
-  m.pushSnake("UDLURUDLLRLDDDLUDUUULRRULDDUDRLURLLDDRLDLUDURURDLLURULDLRRURRLDURUDRDRLLLDRUDDDLRRUDLLRDUUDRRRLDLDLDDLRRUUDLULRDULDRULDLLRLRDDRLRUDDUDLULDRLUDRDLLURLRLRUUURUDRLLRRULUUULURRLULRLLDRRLDRLRUULRRUDLLLLDLDRLDUDRLRULLLURDDRRLLLUDURLDLLRLLDLRUDDRLDUULLUDRRRLRRUDL");
-  m.pushSnake("UDLDRDDDLLLLULRRDLDUDUDRLDDLULUULDDRDRDLLLLDLDUDRDRRULDURDDDLRRDURLRLULDDUDDURRRLLRDUDRLRDDUURLLUDLDRLDUUDDDULULLDRDRRLDUDDUULDDRDLRRDULLUURUDRRRRUUULUULLDDDUULLUUDULUDRDRLUDRUUULLDLDUDUDDDLRDDDDRLLDURRLLUURRUURLDRLRRDRLDLLDLLDURRLRRLUUUDULLULDDLUDRRRDRURD");
-
   int	i(1);
   int	j(0);
   while (1)
     {
       m.setTittle(i);
       j = 0;
-      while (m.hasLivingSnakes() && m.userContinue() && j < 5000)
+      while (m.hasLivingSnakes() && m.userContinue() && j < 50 + (i * 10))
 	{
-	  std::cout << "============== Tour " << i << "/" << j << " (" << best << ")================" << std::endl;
+	  std::cout << "============== Tour [" << i << "] | " << j << "/" << 50 + (i * 10) << " (" << best << ")================" << std::endl;
 	  m.play();
 	  j++;
 	}

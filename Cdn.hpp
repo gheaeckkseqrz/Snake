@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Wed Mar 14 15:42:10 2012 WILMOT Pierre
-// Last update Fri Apr 27 00:19:08 2012 WILMOT Pierre
+// Last update Mon Apr 30 21:13:48 2012 WILMOT Pierre
 //
 
 #ifndef __Cdn_HPP__
@@ -96,5 +96,11 @@ bool		operator==(Cdn<T> const& a, Cdn<T> const& b)
   return (false);
 }
 
+template <class T>
+Cdn<T>		operator+(Cdn<T> const& a, Cdn<T> const& b)
+{
+  Cdn<int>	c(a.getX() + b.getX(), a.getY() + b.getY(), a.getZ() + b.getZ());
+  return (c);
+}
 
 #endif

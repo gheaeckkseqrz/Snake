@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 21:05:14 2012 WILMOT Pierre
-// Last update Sun Apr 29 21:19:19 2012 WILMOT Pierre
+// Last update Mon Apr 30 21:16:58 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -27,11 +27,11 @@ Snake::Snake(Map const &m, Snake const &a, Snake const &b)
   placeHead(m);
 }
 
-Snake::Snake(Map const &m, std::string const &g)
-  :SnakeIA(g), toGrow(0), m_alive(true)
-{
-  placeHead(m);
-}
+// Snake::Snake(Map const &m, std::string const &g)
+//   :SnakeIA(g), toGrow(0), m_alive(true)
+// {
+//   placeHead(m);
+// }
 
 Snake::~Snake()
 {
@@ -206,25 +206,7 @@ bool				Snake::canMove(Map const &m) const
 void				Snake::rePlace(Map const &m)
 {
   m_snake.clear();
-  int	x;
-  int	y;
-
-  while (m_snake.size() != START_SIZE)
-    {
-      if (m_snake.empty())
-	{
-	  do
-	    {
-	      x = rand() % MAP_X;
-	      y = rand() % MAP_Y;
-	      std::cout << "Placing head on " << x << "/" << y << " : " << m.getCase(x, y) << std::endl;
-	    }
-	  while (m.getCase(x, y) != Map::EMPTY);
-	  m_snake.push_back(Cdn<int>(x, y));
-	}
-      if (!appendSnake(START_SIZE - 1, m))
-	m_snake.clear();
-    }
+  placeHead(m);
 }
 
 Cdn<int>			Snake::operator[](unsigned int i)

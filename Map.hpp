@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:49:18 2012 WILMOT Pierre
-// Last update Sun Apr 29 19:30:28 2012 WILMOT Pierre
+// Last update Mon Apr 30 21:02:01 2012 WILMOT Pierre
 //
 
 #ifndef __MAP_HPP__
@@ -43,13 +43,16 @@ public:
   void				spawnFood();
   void				deleteFood(int x, int y);
   bool				hasLivingSnakes() const;
-  unsigned int			return_env(Cdn<int> &a) const;
+  unsigned int			return_env1(Cdn<int> &a) const;
+  unsigned int			return_env2(Cdn<int> &a) const;
+  unsigned int			return_env3(Cdn<int> &a) const;
+  unsigned int			return_env4(Cdn<int> &a) const;
   void				order();
   bool				userContinue() const;
   unsigned int			log(int i);
   void				mute();
   void				refill();
-  void				pushSnake(std::string g);
+  // void				pushSnake(std::string g);
 
 private:
   bool				FoodUp(Cdn<int> &a) const;
