@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Tue May  1 10:41:38 2012 WILMOT Pierre
+// Last update Tue May  1 14:51:10 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -106,7 +106,7 @@ void				Map::spawnFood()
   int	x;
   int	y;
 
-  while (m_food.size() < (unsigned int)100)
+  while (m_food.size() < (unsigned int)1)
     {
       do
 	{
@@ -176,13 +176,16 @@ void				Map::mute()
     {
       m_snakes.pop_back();
     }
-  for (int j(0) ; j <= m ; ++j)
+  for (int j(0) ; j <= k ; ++j)
     {
       m_snakes[j].rePlace(*this);
-      for (int l(j+1) ; l <= m ; ++l)
-        {
-	  m_snakes.push_back(Snake(*this, m_snakes[j], m_snakes[l]));
-        }
+      if (j < m)
+	{
+	  for (int l(j+1) ; l <= m ; ++l)
+	    {
+	      m_snakes.push_back(Snake(*this, m_snakes[j], m_snakes[l]));
+	    }
+	}
     }
   for (unsigned int i(0) ; i < m_snakes.size() ; ++i)
     {
