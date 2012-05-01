@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Mon Apr 30 21:35:13 2012 WILMOT Pierre
+// Last update Tue May  1 10:50:31 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -30,13 +30,14 @@ int	main(int ac, char **av)
 
   int	i(1);
   int	j(0);
+  int	nb_tour(100);
   while (1)
     {
       m.setTittle(i);
       j = 0;
-      while (m.hasLivingSnakes() && m.userContinue() && j < 50 + (i * 10))
+      while (m.hasLivingSnakes() && m.userContinue() && j < nb_tour)
 	{
-	  std::cout << "============== Tour [" << i << "] | " << j << "/" << 50 + (i * 10) << " (" << best << ")================" << std::endl;
+	  std::cout << "============== Tour [" << i << "] | " << j << "/" << nb_tour << " (" << best << ")================" << std::endl;
 	  m.play();
 	  j++;
 	}
@@ -44,6 +45,7 @@ int	main(int ac, char **av)
       best2 = m.log(i);
       if (best2 > best)
 	best = best2;
+      nb_tour = best * 20;
       m.mute();
       i++;
     }

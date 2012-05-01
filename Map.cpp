@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Mon Apr 30 21:50:37 2012 WILMOT Pierre
+// Last update Tue May  1 10:41:38 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -46,12 +46,12 @@ Map::e_caseType		Map::getCase(int x, int y) const
 
 void			Map::display()
 {
-  sf::Color	c[6] = {sf::Color::Red,
-			sf::Color::Blue,
+  sf::Color	c[6] = {sf::Color::Blue,
 			sf::Color::Green,
 			sf::Color::Yellow,
 			sf::Color::Magenta,
-			sf::Color::Cyan };
+			sf::Color::Cyan,
+			sf::Color::Red      };
 
   m_win->clear();
 
@@ -158,6 +158,7 @@ unsigned int			Map::log(int i)
 	  logfile << m_snakes[i].getGene(j) << std::endl;
 	}
     }
+  logfile.close();
   return (best);
 }
 
