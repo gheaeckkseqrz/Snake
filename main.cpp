@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Tue May  1 10:50:31 2012 WILMOT Pierre
+// Last update Wed May  2 21:34:43 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -36,15 +36,16 @@ int	main(int ac, char **av)
       m.setTittle(i);
       j = 0;
       while (m.hasLivingSnakes() && m.userContinue() && j < nb_tour)
-	{
-	  std::cout << "============== Tour [" << i << "] | " << j << "/" << nb_tour << " (" << best << ")================" << std::endl;
-	  m.play();
-	  j++;
-	}
+  	{
+  	  std::cout << "============== Tour [" << i << "] | " << j << "/" << nb_tour << " (" << best << ")================" << std::endl;
+  	  m.play();
+  	  j++;
+  	}
       m.order();
-      best2 = m.log(i);
+      best2 = m.fileLog(i);
+      m.mysqlLog(i);
       if (best2 > best)
-	best = best2;
+  	best = best2;
       nb_tour = best * 20;
       m.mute();
       i++;

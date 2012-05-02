@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:49:18 2012 WILMOT Pierre
-// Last update Mon Apr 30 21:02:01 2012 WILMOT Pierre
+// Last update Wed May  2 21:39:19 2012 WILMOT Pierre
 //
 
 #ifndef __MAP_HPP__
@@ -17,11 +17,12 @@
 #include	"Display.hpp"
 #include	"Cdn.hpp"
 #include	"Snake.hpp"
+#include	"Logable.hpp"
 
 #define	MAP_X	256
 #define	MAP_Y	256
 
-class Map : public Display
+class Map : public Display, public Logable
 {
 public:
 
@@ -49,10 +50,11 @@ public:
   unsigned int			return_env4(Cdn<int> &a) const;
   void				order();
   bool				userContinue() const;
-  unsigned int			log(int i);
   void				mute();
   void				refill();
-  // void				pushSnake(std::string g);
+
+  unsigned int			fileLog(int i);
+  unsigned int			mysqlLog(int i);
 
 private:
   bool				FoodUp(Cdn<int> &a) const;

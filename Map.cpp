@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Tue May  1 14:51:10 2012 WILMOT Pierre
+// Last update Wed May  2 21:56:00 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -106,7 +106,7 @@ void				Map::spawnFood()
   int	x;
   int	y;
 
-  while (m_food.size() < (unsigned int)1)
+  while (m_food.size() < (unsigned int)100)
     {
       do
 	{
@@ -136,30 +136,6 @@ bool				Map::hasLivingSnakes() const
 bool				Map::userContinue() const
 {
   return (m_continue);
-}
-
-unsigned int			Map::log(int i)
-{
-  unsigned int			best(0);
-  std::stringstream	ss;
-  ss << "./Logs/" << i << ".txt";
-  std::ofstream	logfile(ss.str().c_str());
-
-  logfile << "Vague " << i << std::endl << std::endl;
-
-  best = m_snakes[0].size();
-  for (unsigned int i(0) ; i < m_snakes.size() ; ++i)
-    {
-      if (m_snakes[0].size() > best)
-	best = m_snakes[0].size();
-      logfile << "Size : " << m_snakes[i].size() << std::endl;
-      for (int j(0) ; j < 5 ; ++j)
-	{
-	  logfile << m_snakes[i].getGene(j) << std::endl;
-	}
-    }
-  logfile.close();
-  return (best);
 }
 
 void				Map::mute()
@@ -368,6 +344,60 @@ bool				Map::FoodIn(int x1, int x2, int y1, int y2) const
     }
   return (false);
 }
+
+// ===================== LOG FUNC
+
+unsigned int	Map::fileLog(int i)
+{
+  unsigned int			best(0);
+  std::stringstream		ss;
+
+  ss << "./Logs/" << i << ".txt";
+  std::ofstream			logfile(ss.str().c_str());
+
+  logfile << "Vague " << i << std::endl << std::endl;
+
+  best = m_snakes[0].size();
+  for (unsigned int i(0) ; i < m_snakes.size() ; ++i)
+    {
+      if (m_snakes[i].size() > best)
+	best = m_snakes[i].size();
+      logfile << "Size : " << m_snakes[i].size() << std::endl;
+      for (int j(0) ; j < 5 ; ++j)
+	{
+	  logfile << m_snakes[i].getGene(j) << std::endl;
+	}
+    }
+  logfile.close();
+  return (best);
+}
+
+unsigned int	Map::mysqlLog(int t)
+{
+  unsigned int			best(0);
+  std::stringstream		ss;
+
+  if (mysqlOK)
+    {
+      best = m_snakes[0].size();
+      for (unsigned int i(0) ; i < m_snakes.size() ; ++i)
+	{
+	  if (m_snakes[0].size() > best)
+	    best = m_snakes[0].size();
+	  ss << "INSERT INTO Genes(id, Phase, G1, G2, G3, G4, G5, Score) VALUES('', ";
+	  ss << t << ", ";
+	  for (int j(0) ; j < 5 ; ++j)
+	    ss << "'" << m_snakes[i].getGene(j) << "', ";
+	  ss << m_snakes[i].size();
+	  ss << ");";
+	  std::cout << "R : " << ss.str() << std::endl;
+	  mysql_query(&mysql, ss.str().c_str());
+	  ss.str("");
+	}
+    }
+  return (best);
+}
+
 
 // void				Map::pushSnake(std::string g)
 // {

@@ -6,13 +6,14 @@ SRC	=	main.cpp			\
 		Map.cpp				\
 		Random.cpp			\
 		Snake.cpp			\
-		SnakeIA.cpp
+		SnakeIA.cpp			\
+		Logable.cpp
 
 OBJ	=	$(SRC:.cpp=.o)
 
 INCLUDE	=
 
-LIB	=	-lsfml-graphics -lsfml-window -lsfml-system
+LIB	=	-lsfml-graphics -lsfml-window -lsfml-system -lmysqlclient
 
 CC	=	g++
 
