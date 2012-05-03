@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Wed May  2 21:56:00 2012 WILMOT Pierre
+// Last update Wed May  2 22:45:26 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -390,7 +390,6 @@ unsigned int	Map::mysqlLog(int t)
 	    ss << "'" << m_snakes[i].getGene(j) << "', ";
 	  ss << m_snakes[i].size();
 	  ss << ");";
-	  std::cout << "R : " << ss.str() << std::endl;
 	  mysql_query(&mysql, ss.str().c_str());
 	  ss.str("");
 	}
