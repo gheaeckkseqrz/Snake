@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Wed May  2 22:45:26 2012 WILMOT Pierre
+// Last update Thu May  3 18:42:44 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -13,17 +13,34 @@
 #include	<fstream>
 #include	<sstream>
 #include	<cmath>
+#include	<unistd.h>
+#include	<ctime>
 
 #include	"Map.hpp"
 
 Map::Map(int nb_snake)
   :m_continue(true), m_size(nb_snake)
 {
+  char	hostname[512];
+
   for (int i(0) ; i < nb_snake ; ++i)
     {
       m_snakes.push_back(Snake(*this));
     }
   display();
+  gethostname(hostname, 512);
+
+  time_t		t = time(0);
+  struct tm *		now = localtime(&t);
+  std::stringstream	ss;
+
+  ss << hostname << "_" << (now->tm_year + 1900) << "-"
+     << (now->tm_mon + 1) << "-"
+     <<  now->tm_mday << "_"
+     << getpid();
+
+  m_gameId = ss.str();
+  std::cout << m_gameId << std::endl;
 }
 
 Map::~Map()
@@ -142,13 +159,13 @@ void				Map::mute()
 {
   int	k(40); // Keep
   int	m(20); // Mute
-  if ((int)m_snakes.size() == 5)
+  if ((int)m_snakes.size() <= 40)
     {
       k = 4;
       m = 2;
     }
 
-  while ((int)m_snakes.size() != k)
+  while ((int)m_snakes.size() > k)
     {
       m_snakes.pop_back();
     }
@@ -384,7 +401,8 @@ unsigned int	Map::mysqlLog(int t)
 	{
 	  if (m_snakes[0].size() > best)
 	    best = m_snakes[0].size();
-	  ss << "INSERT INTO Genes(id, Phase, G1, G2, G3, G4, G5, Score) VALUES('', ";
+	  ss << "INSERT INTO Genes(id, gameid, Phase, G1, G2, G3, G4, G5, Score) VALUES('', ";
+	  ss << m_gameId << ", ";
 	  ss << t << ", ";
 	  for (int j(0) ; j < 5 ; ++j)
 	    ss << "'" << m_snakes[i].getGene(j) << "', ";

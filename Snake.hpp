@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:59:37 2012 WILMOT Pierre
-// Last update Mon Apr 30 19:31:53 2012 WILMOT Pierre
+// Last update Thu May  3 15:12:10 2012 WILMOT Pierre
 //
 
 #ifndef __SNAKE_HPP__
@@ -28,6 +28,7 @@ public:
 
   bool				getAlive() const;
   void				setAlive(bool a);
+  int				getToGrow() const;
 
   void				placeHead(Map const &m);
   bool				containCdn(Cdn<int> const &c) const;
@@ -44,7 +45,7 @@ private:
 
 private:
   std::vector<Cdn<int> >	m_snake;
-  int				toGrow;
+  int				m_toGrow;
   bool				m_alive;
 };
 

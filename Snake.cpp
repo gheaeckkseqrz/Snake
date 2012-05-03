@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 21:05:14 2012 WILMOT Pierre
-// Last update Mon Apr 30 21:16:58 2012 WILMOT Pierre
+// Last update Thu May  3 15:14:42 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -16,13 +16,13 @@
 #define	START_SIZE	4
 
 Snake::Snake(Map const &m)
-  :toGrow(0), m_alive(true)
+  :m_toGrow(0), m_alive(true)
 {
   placeHead(m);
 }
 
 Snake::Snake(Map const &m, Snake const &a, Snake const &b)
-  :SnakeIA(a, b), toGrow(0), m_alive(true)
+  :SnakeIA(a, b), m_toGrow(0), m_alive(true)
 {
   placeHead(m);
 }
@@ -71,6 +71,10 @@ void				Snake::setAlive(bool a)
   m_alive = a;
 }
 
+int				Snake::getToGrow() const
+{
+  return (m_toGrow);
+}
 
 bool				Snake::appendSnake(int n, Map const &m)
 {
@@ -106,7 +110,7 @@ bool				Snake::containCdn(Cdn<int> const &c) const
 
 unsigned int			Snake::size() const
 {
-  return (m_snake.size());
+  return (m_snake.size() + m_toGrow);
 }
 
 void				Snake::display(std::ostream &s) const
@@ -178,13 +182,13 @@ void				Snake::move(Map &m)
       d = getRandomMove();
     }
   if (c == Map::FOOD)
-    toGrow++;
-  if (toGrow == 0)
+    m_toGrow++;
+  if (m_toGrow == 0)
     m_snake.erase(m_snake.begin());
   else
     {
       std::cout << "I'm Growing, my size is " << m_snake.size() << std::endl;
-      toGrow--;
+      m_toGrow--;
     }
 }
 

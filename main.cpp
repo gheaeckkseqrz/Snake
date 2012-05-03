@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Wed May  2 21:34:43 2012 WILMOT Pierre
+// Last update Thu May  3 14:58:27 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -46,7 +46,7 @@ int	main(int ac, char **av)
       m.mysqlLog(i);
       if (best2 > best)
   	best = best2;
-      nb_tour = best * 20;
+      nb_tour = best * 50;
       m.mute();
       i++;
     }

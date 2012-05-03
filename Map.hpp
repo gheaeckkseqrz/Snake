@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:49:18 2012 WILMOT Pierre
-// Last update Wed May  2 21:39:19 2012 WILMOT Pierre
+// Last update Thu May  3 18:29:34 2012 WILMOT Pierre
 //
 
 #ifndef __MAP_HPP__
@@ -76,6 +76,7 @@ private:
   unsigned int			m_tour;
   bool				m_continue;
   int				m_size;
+  std::string			m_gameId;				;
 };
 
 #endif
