@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Thu May  3 18:42:44 2012 WILMOT Pierre
+// Last update Thu May  3 19:09:15 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -63,11 +63,13 @@ Map::e_caseType		Map::getCase(int x, int y) const
 
 void			Map::display()
 {
-  sf::Color	c[6] = {sf::Color::Blue,
+  sf::Color	orange(255, 128, 0);
+  sf::Color	c[7] = {sf::Color::Blue,
 			sf::Color::Green,
 			sf::Color::Yellow,
 			sf::Color::Magenta,
 			sf::Color::Cyan,
+			orange,
 			sf::Color::Red      };
 
   m_win->clear();
@@ -83,7 +85,7 @@ void			Map::display()
 
   for (unsigned int i(0) ; i < m_food.size() ; ++i)
     {
-      drawBloc(m_food[i], c[5]);
+      drawBloc(m_food[i], c[6]);
     }
 
   for (unsigned int i(0) ; i < m_snakes.size() ; ++i)
@@ -91,7 +93,7 @@ void			Map::display()
       if (m_snakes[i].getAlive())
 	{
 	  for (unsigned int j(0) ; j < m_snakes[i].size() ; ++j)
-	    drawBloc(m_snakes[i][j], c[i % 5]);
+	    drawBloc(m_snakes[i][j], c[i % 6]);
 	}
     }
   m_win->display();
@@ -402,12 +404,13 @@ unsigned int	Map::mysqlLog(int t)
 	  if (m_snakes[0].size() > best)
 	    best = m_snakes[0].size();
 	  ss << "INSERT INTO Genes(id, gameid, Phase, G1, G2, G3, G4, G5, Score) VALUES('', ";
-	  ss << m_gameId << ", ";
+	  ss << "'" << m_gameId << "'" << ", ";
 	  ss << t << ", ";
 	  for (int j(0) ; j < 5 ; ++j)
 	    ss << "'" << m_snakes[i].getGene(j) << "', ";
 	  ss << m_snakes[i].size();
 	  ss << ");";
+	  std::cout << "R : " << ss.str() << std::endl;
 	  mysql_query(&mysql, ss.str().c_str());
 	  ss.str("");
 	}
