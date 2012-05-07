@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Mon May  7 09:58:02 2012 WILMOT Pierre
+// Last update Mon May  7 13:55:33 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -28,7 +28,7 @@ Map::Map(int nb_snake, bool fromDB)
       MYSQL_RES		*result(NULL);
       MYSQL_ROW		row(NULL);
 
-      mysql_query(&mysql, "SELECT * FROM Genes ORDER BY Score DESC LIMIT 0, 20");
+      mysql_query(&mysql, "SELECT  *, MAX(Score) FROM Genes GROUP BY gameid");
       result = mysql_use_result(&mysql);
       while ((row = mysql_fetch_row(result)))
         {
