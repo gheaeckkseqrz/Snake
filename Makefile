@@ -7,7 +7,8 @@ SRC	=	main.cpp			\
 		Random.cpp			\
 		Snake.cpp			\
 		SnakeIA.cpp			\
-		Logable.cpp
+		Logable.cpp			\
+		Options.cpp
 
 OBJ	=	$(SRC:.cpp=.o)
 

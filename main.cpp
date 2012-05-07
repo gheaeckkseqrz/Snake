@@ -5,11 +5,12 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Mon May  7 09:59:21 2012 WILMOT Pierre
+// Last update Mon May  7 21:16:18 2012 WILMOT Pierre
 //
 
 #include	<iostream>
 
+#include	"Options.hpp"
 #include	"Map.hpp"
 
 int	main(int ac, char **av)
@@ -17,39 +18,47 @@ int	main(int ac, char **av)
   (void)ac;
   (void)av;
 
-  int	c;
+  Options	o;
+  int	c(250);
   int	best(0);
   int	best2(0);
 
-  if (ac >= 2)
-    c = atoi(av[1]);
-  else
-    c = 250;
+  o.parseOption(ac, av);
 
-  Map	m(c, true);
+  if (o.getInfinite())
+    c = 5;
 
-  int	i(1);
-  int	j(0);
-  int	nb_tour(600);
-  while (1)
+  Map	m(c, o.getFromDB());
+
+  if (o.getInfinite())
     {
-      m.setTittle(i);
-      j = 0;
-      while (m.hasLivingSnakes() && m.userContinue() && j < nb_tour)
-  	{
-  	  std::cout << "============== Tour [" << i << "] | " << j << "/" << nb_tour << " (" << best << ")================" << std::endl;
-  	  m.play();
-  	  j++;
-  	}
-      m.order();
-      best2 = m.fileLog(i);
-      m.mysqlLog(i);
-      if (best2 > best)
-  	best = best2;
-      nb_tour = best * 150;
-      m.mute();
-      i++;
+      while (m.hasLivingSnakes())
+	m.play();
     }
-
+  else
+    {
+      int	i(1);
+      int	j(0);
+      int	nb_tour(600);
+      while (1)
+	{
+	  m.setTittle(i);
+	  j = 0;
+	  while (m.hasLivingSnakes() && m.userContinue() && j < nb_tour)
+	    {
+	      std::cout << "============== Tour [" << i << "] | " << j << "/" << nb_tour << " (" << best << ")================" << std::endl;
+	      m.play();
+	      j++;
+	    }
+	  m.order();
+	  best2 = m.fileLog(i);
+	  m.mysqlLog(i);
+	  if (best2 > best)
+	    best = best2;
+	  nb_tour = best * 150;
+	  m.mute();
+	  i++;
+	}
+    }
   return (0);
 }
