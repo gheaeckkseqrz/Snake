@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 21:05:14 2012 WILMOT Pierre
-// Last update Thu May  3 15:14:42 2012 WILMOT Pierre
+// Last update Mon May  7 10:00:49 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -27,15 +27,20 @@ Snake::Snake(Map const &m, Snake const &a, Snake const &b)
   placeHead(m);
 }
 
-// Snake::Snake(Map const &m, std::string const &g)
-//   :SnakeIA(g), toGrow(0), m_alive(true)
-// {
-//   placeHead(m);
-// }
+Snake::Snake(Map const &m,
+      std::string const &g1,
+      std::string const &g2,
+      std::string const &g3,
+      std::string const &g4,
+      std::string const &g5
+      )
+  :SnakeIA(g1, g2, g3, g4, g5), m_toGrow(0), m_alive(true)
+{
+  placeHead(m);
+}
 
 Snake::~Snake()
 {
-  std::cout << "Snake dying at size " << size() << std::endl;
 }
 
 void				Snake::placeHead(Map const &m)
@@ -51,7 +56,6 @@ void				Snake::placeHead(Map const &m)
 	    {
 	      x = rand() % MAP_X;
 	      y = rand() % MAP_Y;
-	      std::cout << "Placing head on " << x << "/" << y << " : " << m.getCase(x, y) << std::endl;
 	    }
 	  while (m.getCase(x, y) != Map::EMPTY);
 	  m_snake.push_back(Cdn<int>(x, y));

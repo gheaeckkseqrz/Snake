@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:49:18 2012 WILMOT Pierre
-// Last update Thu May  3 18:29:34 2012 WILMOT Pierre
+// Last update Mon May  7 09:40:57 2012 WILMOT Pierre
 //
 
 #ifndef __MAP_HPP__
@@ -35,7 +35,7 @@ enum e_caseType
   };
 
 public:
-  Map(int nb_snake);
+  Map(int nb_snake, bool fromDB = false);
   ~Map();
 
   Map::e_caseType		getCase(int x, int y) const;

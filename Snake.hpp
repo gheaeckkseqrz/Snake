@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:59:37 2012 WILMOT Pierre
-// Last update Thu May  3 15:12:10 2012 WILMOT Pierre
+// Last update Mon May  7 09:49:27 2012 WILMOT Pierre
 //
 
 #ifndef __SNAKE_HPP__
@@ -22,7 +22,13 @@ class Snake : public Random, public SnakeIA
 {
 public:
   Snake(Map const &m);
-  // Snake(Map const &m, std::string const &g);
+  Snake(Map const &m,
+	std::string const &g1,
+	std::string const &g2,
+	std::string const &g3,
+	std::string const &g4,
+	std::string const &g5
+	);
   Snake(Map const &m, Snake const &a, Snake const &b);
   ~Snake();
 

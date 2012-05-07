@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Thu May  3 19:09:15 2012 WILMOT Pierre
+// Last update Mon May  7 09:58:02 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -18,14 +18,26 @@
 
 #include	"Map.hpp"
 
-Map::Map(int nb_snake)
+Map::Map(int nb_snake, bool fromDB)
   :m_continue(true), m_size(nb_snake)
 {
   char	hostname[512];
 
-  for (int i(0) ; i < nb_snake ; ++i)
+  if (fromDB)
     {
-      m_snakes.push_back(Snake(*this));
+      MYSQL_RES		*result(NULL);
+      MYSQL_ROW		row(NULL);
+
+      mysql_query(&mysql, "SELECT * FROM Genes ORDER BY Score DESC LIMIT 0, 20");
+      result = mysql_use_result(&mysql);
+      while ((row = mysql_fetch_row(result)))
+        {
+	  m_snakes.push_back(Snake(*this, row[3], row[4], row[5], row[6], row[7]));
+        }
+    }
+  while ((int)m_snakes.size() < nb_snake)
+    {
+	m_snakes.push_back(Snake(*this));
     }
   display();
   gethostname(hostname, 512);
@@ -403,16 +415,18 @@ unsigned int	Map::mysqlLog(int t)
 	{
 	  if (m_snakes[0].size() > best)
 	    best = m_snakes[0].size();
-	  ss << "INSERT INTO Genes(id, gameid, Phase, G1, G2, G3, G4, G5, Score) VALUES('', ";
-	  ss << "'" << m_gameId << "'" << ", ";
-	  ss << t << ", ";
-	  for (int j(0) ; j < 5 ; ++j)
-	    ss << "'" << m_snakes[i].getGene(j) << "', ";
-	  ss << m_snakes[i].size();
-	  ss << ");";
-	  std::cout << "R : " << ss.str() << std::endl;
-	  mysql_query(&mysql, ss.str().c_str());
-	  ss.str("");
+	  if (m_snakes[0].size() > 4)
+	    {
+	      ss << "INSERT INTO Genes(id, gameid, Phase, G1, G2, G3, G4, G5, Score) VALUES('', ";
+	      ss << "'" << m_gameId << "'" << ", ";
+	      ss << t << ", ";
+	      for (int j(0) ; j < 5 ; ++j)
+		ss << "'" << m_snakes[i].getGene(j) << "', ";
+	      ss << m_snakes[i].size();
+	      ss << ");";
+	      mysql_query(&mysql, ss.str().c_str());
+	      ss.str("");
+	    }
 	}
     }
   return (best);

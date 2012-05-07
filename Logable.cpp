@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Wed May  2 20:33:48 2012 WILMOT Pierre
-// Last update Wed May  2 21:41:55 2012 WILMOT Pierre
+// Last update Thu May  3 21:21:12 2012 WILMOT Pierre
 //
 
 #include	<sstream>
@@ -29,8 +29,9 @@ Logable::Logable()
 	mysqlOK = true;
       else
 	mysqlOK = false;
-
     }
+  else
+    mysqlOK = false;
 }
 
 Logable::~Logable()

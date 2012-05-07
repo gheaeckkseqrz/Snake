@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 13:17:08 2012 WILMOT Pierre
-// Last update Mon Apr 30 22:00:10 2012 WILMOT Pierre
+// Last update Mon May  7 10:00:09 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -49,6 +49,23 @@ SnakeIA::SnakeIA(Snake const &a, Snake const &b)
 	}
     }
 }
+
+SnakeIA::SnakeIA(
+	  std::string const &G1,
+	  std::string const &G2,
+	  std::string const &G3,
+	  std::string const &G4,
+	  std::string const &G5
+	  )
+{
+  std::cout << "Creating Snake from Database" << std::endl;
+  m_gene[0] = G1;
+  m_gene[1] = G2;
+  m_gene[2] = G3;
+  m_gene[3] = G4;
+  m_gene[4] = G5;
+}
+
 
 SnakeIA::~SnakeIA()
 {
