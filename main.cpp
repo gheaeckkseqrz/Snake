@@ -30,7 +30,7 @@ int	main(int ac, char **av)
 
   int	i(1);
   int	j(0);
-  int	nb_tour(100);
+  int	nb_tour(600);
   while (1)
     {
       m.setTittle(i);
