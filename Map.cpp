@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 22:58:06 2012 WILMOT Pierre
-// Last update Mon May  7 13:55:33 2012 WILMOT Pierre
+// Last update Tue May  8 10:11:23 2012 WILMOT Pierre
 //
 
 #include	<algorithm>
@@ -66,7 +66,7 @@ Map::e_caseType		Map::getCase(int x, int y) const
   for (unsigned int i(0) ; i < m_snakes.size() ; ++i)
     {
       if (m_snakes[i].containCdn(Cdn<int>(x, y)))
-	return (SNAKE);
+	return (WALL);
     }
   if (std::find(m_food.begin(), m_food.end(), Cdn<int>(x, y)) != m_food.end())
     return (FOOD);
@@ -102,10 +102,12 @@ void			Map::display()
 
   for (unsigned int i(0) ; i < m_snakes.size() ; ++i)
     {
-      if (m_snakes[i].getAlive())
+      for (unsigned int j(0) ; j < m_snakes[i].size() ; ++j)
 	{
-	  for (unsigned int j(0) ; j < m_snakes[i].size() ; ++j)
+	  if (m_snakes[i].getAlive())
 	    drawBloc(m_snakes[i][j], c[i % 6]);
+	  else
+	    drawBloc(m_snakes[i][j], sf::Color(127, 127, 127));
 	}
     }
   m_win->display();

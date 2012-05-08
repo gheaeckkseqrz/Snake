@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 20:49:18 2012 WILMOT Pierre
-// Last update Mon May  7 09:40:57 2012 WILMOT Pierre
+// Last update Tue May  8 10:08:40 2012 WILMOT Pierre
 //
 
 #ifndef __MAP_HPP__
@@ -29,7 +29,6 @@ public:
 enum e_caseType
   {
     EMPTY,
-    SNAKE,
     FOOD,
     WALL
   };
