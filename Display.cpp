@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Fri Apr 27 00:48:27 2012 WILMOT Pierre
-// Last update Sat Apr 28 22:15:27 2012 WILMOT Pierre
+// Last update Sat May 19 00:36:38 2012 WILMOT Pierre
 //
 
 #include	<sstream>
@@ -23,7 +23,8 @@ void		Display::drawBloc(Cdn<int> const&c, sf::Color const &a)
 
   bloc.setSize(sf::Vector2f(3, 3));
   bloc.setOutlineColor(a);
-  bloc.setOutlineThickness(1);
+  bloc.setOutlineThickness(0);
+  bloc.setFillColor(a);
   bloc.setPosition(c.getX()*3, c.getY()*3);
   m_win->draw(bloc);
 }
