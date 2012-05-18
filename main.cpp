@@ -5,7 +5,7 @@
 // Login   <wilmot@epitech.net>
 // 
 // Started on  Thu Apr 26 23:56:55 2012 WILMOT Pierre
-// Last update Mon May  7 21:16:18 2012 WILMOT Pierre
+// Last update Sat May 19 00:06:45 2012 WILMOT Pierre
 //
 
 #include	<iostream>
@@ -46,7 +46,7 @@ int	main(int ac, char **av)
 	  j = 0;
 	  while (m.hasLivingSnakes() && m.userContinue() && j < nb_tour)
 	    {
-	      std::cout << "============== Tour [" << i << "] | " << j << "/" << nb_tour << " (" << best << ")================" << std::endl;
+	      std::cout << "============== Tour [" << i << "] | " << j << "/" << nb_tour << " (" << best2 << ")(" << best << ")================" << std::endl;
 	      m.play();
 	      j++;
 	    }
